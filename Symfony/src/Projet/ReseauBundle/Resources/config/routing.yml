@@ -1,0 +1,18 @@
+Projet_accueil:
+    path:  /
+    defaults: { _controller: ProjetReseauBundle:Reseau:index }
+
+Projet_service:
+    path:  /service
+    defaults: { _controller: ProjetReseauBundle:Reseau:service }
+
+Projet_reseauGlobal:
+    path:  /service/reseau/
+    defaults: { _controller: ProjetReseauBundle:Reseau:reseauGlobal }
+
+
+Projet_reseauSalleView:
+    path:  /service/reseau/{salle}
+    defaults: { _controller: ProjetReseauBundle:Reseau:reseauSalleView }
+
+
