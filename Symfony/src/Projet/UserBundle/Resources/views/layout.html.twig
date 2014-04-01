@@ -1,4 +1,3 @@
-
 {% extends "::layout.html.twig" %}
 {% block title %}
   Reseau - {{ parent() }}
@@ -6,7 +5,7 @@
 {% block body %}
 
     <div class="row-fluid">
-    <div class="span12"
+    <div class="span12">
 
      {% for type, messages in app.session.flashbag.all() %}
             {% for key, message in messages %}
