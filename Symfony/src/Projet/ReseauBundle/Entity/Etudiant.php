@@ -42,7 +42,7 @@ class Etudiant
      */
     private $numero;
     /**
-     * @ORM\OneToOne(targetEntity="Projet\ReseauBundle\Entity\Image")
+     * @ORM\OneToOne(targetEntity="Projet\ReseauBundle\Entity\Image",cascade={"persist"})
     */
     private $image;
 
