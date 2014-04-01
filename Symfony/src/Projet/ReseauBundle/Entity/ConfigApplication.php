@@ -11,9 +11,9 @@ class ConfigApplication
 {
   /**
    * @ORM\Id
-   * @ORM\ManyToOne(targetEntity="Projet\ReseauBundle\Entity\ConfigPost")
+   * @ORM\ManyToOne(targetEntity="Projet\ReseauBundle\Entity\Ordinateur")
    */
-  private $configpost;
+  private $post;
 
   /**
    * @ORM\Id
@@ -95,5 +95,28 @@ class ConfigApplication
     public function getApplication()
     {
         return $this->Application;
+    }
+
+    /**
+     * Set post
+     *
+     * @param \Projet\ReseauBundle\Entity\Ordinateur $post
+     * @return ConfigApplication
+     */
+    public function setPost(\Projet\ReseauBundle\Entity\Ordinateur $post)
+    {
+        $this->post = $post;
+
+        return $this;
+    }
+
+    /**
+     * Get post
+     *
+     * @return \Projet\ReseauBundle\Entity\Ordinateur 
+     */
+    public function getPost()
+    {
+        return $this->post;
     }
 }
