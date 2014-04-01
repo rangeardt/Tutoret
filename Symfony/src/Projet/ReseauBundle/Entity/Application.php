@@ -24,14 +24,14 @@ class Application
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=255)
+     * @ORM\Column(name="nom", type="string", length=255, unique=true)
      */
     private $nom;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="identifiant", type="string", length=255)
+     * @ORM\Column(name="identifiant", type="string", length=255, unique=true)
      */
     private $identifiant;
 
