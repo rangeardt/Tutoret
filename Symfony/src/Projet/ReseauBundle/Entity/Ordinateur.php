@@ -40,10 +40,10 @@ class Ordinateur
      * @ORM\Column(name="etat", type="integer")
      */
     private $etat;
-    /**
-    * @ORM\OneToOne(targetEntity="Projet\ReseauBundle\Entity\ConfigPost")
+  /**
+     * @ORM\OneToOne(targetEntity="Projet\ReseauBundle\Entity\Etudiant")
     */
-    private $config;
+    private $etudiant;
 
     /**
      * Get id
@@ -145,5 +145,28 @@ class Ordinateur
     public function getConfig()
     {
         return $this->config;
+    }
+
+    /**
+     * Set etudiant
+     *
+     * @param \Projet\ReseauBundle\Entity\Etudiant $etudiant
+     * @return Ordinateur
+     */
+    public function setEtudiant(\Projet\ReseauBundle\Entity\Etudiant $etudiant = null)
+    {
+        $this->etudiant = $etudiant;
+
+        return $this;
+    }
+
+    /**
+     * Get etudiant
+     *
+     * @return \Projet\ReseauBundle\Entity\Etudiant 
+     */
+    public function getEtudiant()
+    {
+        return $this->etudiant;
     }
 }
