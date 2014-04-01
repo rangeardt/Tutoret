@@ -35,9 +35,31 @@ class Salle
      */
     private $identificateur;
   /**
-   * @ORM\OneToOne(targetEntity="Projet\ReseauBundle\Entity\ConfigSalle", cascade={"persist"})
-   */
-  private $config;
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date", type="datetime")
+     */
+    private $date;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="nbpctotal", type="integer")
+     */
+    private $nbpctotal;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="nbpcallume", type="integer")
+     */
+    private $nbpcallume;
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="nbpcoccuper", type="integer")
+     */
+    private $nbpcoccuper;
 
     /**
      * Get id
@@ -116,5 +138,97 @@ class Salle
     public function getConfig()
     {
         return $this->config;
+    }
+
+    /**
+     * Set date
+     *
+     * @param \DateTime $date
+     * @return Salle
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime 
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * Set nbpctotal
+     *
+     * @param integer $nbpctotal
+     * @return Salle
+     */
+    public function setNbpctotal($nbpctotal)
+    {
+        $this->nbpctotal = $nbpctotal;
+
+        return $this;
+    }
+
+    /**
+     * Get nbpctotal
+     *
+     * @return integer 
+     */
+    public function getNbpctotal()
+    {
+        return $this->nbpctotal;
+    }
+
+    /**
+     * Set nbpcallume
+     *
+     * @param integer $nbpcallume
+     * @return Salle
+     */
+    public function setNbpcallume($nbpcallume)
+    {
+        $this->nbpcallume = $nbpcallume;
+
+        return $this;
+    }
+
+    /**
+     * Get nbpcallume
+     *
+     * @return integer 
+     */
+    public function getNbpcallume()
+    {
+        return $this->nbpcallume;
+    }
+
+    /**
+     * Set nbpcoccuper
+     *
+     * @param integer $nbpcoccuper
+     * @return Salle
+     */
+    public function setNbpcoccuper($nbpcoccuper)
+    {
+        $this->nbpcoccuper = $nbpcoccuper;
+
+        return $this;
+    }
+
+    /**
+     * Get nbpcoccuper
+     *
+     * @return integer 
+     */
+    public function getNbpcoccuper()
+    {
+        return $this->nbpcoccuper;
     }
 }
