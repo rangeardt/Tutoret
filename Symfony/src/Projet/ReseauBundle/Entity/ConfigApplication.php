@@ -51,28 +51,7 @@ class ConfigApplication
         return $this->etat;
     }
 
-    /**
-     * Set configpost
-     *
-     * @param \Projet\ReseauBundle\Entity\ConfigPost $configpost
-     * @return ConfigApplication
-     */
-    public function setConfigpost(\Projet\ReseauBundle\Entity\ConfigPost $configpost)
-    {
-        $this->configpost = $configpost;
-
-        return $this;
-    }
-
-    /**
-     * Get configpost
-     *
-     * @return \Projet\ReseauBundle\Entity\ConfigPost 
-     */
-    public function getConfigpost()
-    {
-        return $this->configpost;
-    }
+    
 
     /**
      * Set Application
