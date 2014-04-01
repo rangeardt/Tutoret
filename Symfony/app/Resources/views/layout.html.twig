@@ -31,7 +31,24 @@
               <li><a href="{{ path('Projet_accueil') }}">Accueil</a></li>
               <li><a href="{{ path('Projet_service') }}">Services</a></li>
               <li><a href="#">Contact</a></li>
-            </ul>
+	      <ul class="nav pull-right">
+		{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+		<li><a href="#" class="dropdown-toggle pull-right" data-toggle="dropdown">{{ app.user.username }}<b class="caret"></b></a>
+		  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+		    <li><a tabindex="-1" href="#">Profil</a></li>
+		    <li><a tabindex="-1" href="#">Administration</a></li>
+		    <li><a tabindex="-1" href="{{ path('fos_user_security_logout') }}">Déconnexion</a></li>
+		    </li>
+		    {% else %}
+		    <li><a href="#" class="dropdown-toggle pull-right" data-toggle="dropdown"> Login <b class="caret"></b></a>
+		      <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+			<li><a href="{{ path('fos_user_security_login') }}">Connexion</a></li>    
+			<li><a href="{{ path('fos_user_registration_register') }}">Inscription</a></li>
+			</li>
+		    {% endif %}
+		</ul>
+              </ul>
+	    </ul>
           </div><!--/.nav-collapse -->
         </div>
       </div>
