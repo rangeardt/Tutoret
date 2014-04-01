@@ -89,6 +89,6 @@ class Image
      */
     public function getAlt()
     {
-        return $this->alt;
+        return $this->alt; 
     }
 }
