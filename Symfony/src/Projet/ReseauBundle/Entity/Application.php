@@ -92,3 +92,4 @@ class Application
         return $this->identifiant;
     }
 }
+
