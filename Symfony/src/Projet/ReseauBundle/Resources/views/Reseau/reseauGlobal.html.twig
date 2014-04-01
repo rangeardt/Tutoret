@@ -26,11 +26,11 @@
 
                 <tr>
                   <td><a href="{{ path('Projet_reseauSalleView', {'salle': salle.nom}) }}" title="Cliquez pour plus de détails">{{salle.nom}}</a> </td>
-                  <td>{{ salle.config.nbpctotal }}</td>
-                  <td>{{ salle.config.nbpcallume }}</td>
-                  <td>a Faire</td>
+                  <td>{{ salle.nbpctotal }}</td>
+                  <td>{{ salle.nbpcallume }}</td>
+                  <td>{{ salle.nbpcoccuper }}</td>
                   <td>A faire</td>
-                  <td>{{ salle.config.date|date("d/m/Y h:m:s") }}</td>
+                  <td>{{ salle.date|date("d/m/Y h:m:s") }}</td>
                 </tr>
          
 {% endfor %}
