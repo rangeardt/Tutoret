@@ -10,9 +10,26 @@ Projet_reseauGlobal:
     path:  /service/reseau/
     defaults: { _controller: ProjetReseauBundle:Reseau:reseauGlobal }
 
-
 Projet_reseauSalleView:
     path:  /service/reseau/{salle}
     defaults: { _controller: ProjetReseauBundle:Reseau:reseauSalleView }
 
+Projet_admin:
+    path:  /administration
+    defaults: { _controller: ProjetReseauBundle:Reseau:index }
 
+Projet_adminSalle:
+    path:  /administration/salle
+    defaults: { _controller: ProjetReseauBundle:Reseau:formSalle }
+
+Projet_adminApplication:
+    path:  /administration/application
+    defaults: { _controller: ProjetReseauBundle:Reseau:formApplication }
+
+Projet_adminOrdinateur:
+    path:  /administration/ordinateur
+    defaults: { _controller: ProjetReseauBundle:Reseau:formOrdinateur }
+
+Projet_adminOrdinateur:
+    path:  /administration/etudiant
+    defaults: { _controller: ProjetReseauBundle:Reseau:formEtudiant }
