@@ -36,6 +36,7 @@
 		<li><a href="#" class="dropdown-toggle pull-right" data-toggle="dropdown">{{ app.user.username }}<b class="caret"></b></a>
 		  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
 		    <li><a tabindex="-1" href="{{ path('fos_user_profile_show') }} ">Profil</a></li>
+		    {% if is_granted("ROLE_ADMIN") %}
 		    <li><a class="dropdown-toggle pull-right" data-toggle="dropdown" tabindex="-1" href="#">Administration</a>
 		      <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
 			<li><a tabindex="-1" href="#">Formulaire :</a></li>
@@ -44,6 +45,7 @@
 			<li><a tabindex="-1" href="{{ path('Projet_administration_ordinateur') }}">Ordinateur</a></li>
 			<li><a tabindex="-1" href="{{ path('Projet_administration_salle') }}">Salle</a></li>
 			<li><a tabindex="-1" href="{{ path('Projet_administration_etudiant') }}">Etudiant</a></li>
+			{% endif %}
 		    <li><a tabindex="-1" href="{{ path('fos_user_security_logout') }}">Déconnexion</a></li>
 		    </li>
 		    {% else %}
