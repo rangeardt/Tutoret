@@ -1,4 +1,3 @@
-
 {% extends "ProjetReseauBundle::layout.html.twig" %}
 {% block title %}
   Salle - {{ parent() }}
@@ -40,7 +39,7 @@
 									{% if post.etudiant %}
 										{% if post.etudiant.image %}
 					
-								<img src="{{ asset(post.etudiant.image.url) }}"  alt="{{post.config.etudiant.image.alt}}" style="width=150"></img>										{% else %}
+								<img src="{{ asset(post.etudiant.image.url) }}"  alt="{{post.etudiant.image.alt}}" style="width=150"></img>										{% else %}
 										
 																<img src="{{ asset('img/personne.png') }}"  alt="User !" style="width=150"></img>	
 									
