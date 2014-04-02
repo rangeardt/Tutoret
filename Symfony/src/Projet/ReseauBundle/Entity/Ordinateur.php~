@@ -24,7 +24,7 @@ class Ordinateur
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=255)
+     * @ORM\Column(name="nom", type="string", length=255, unique=true)
      */
     private $nom;
 
@@ -44,7 +44,7 @@ class Ordinateur
     /**
      * @var string
      *
-     * @ORM\Column(name="text", type="text",nullable=true)
+     * @ORM\Column(name="text", type="text")
      */
     private $paquet;
 
@@ -154,28 +154,5 @@ class Ordinateur
     public function getEtudiant()
     {
         return $this->etudiant;
-    }
-
-    /**
-     * Set paquet
-     *
-     * @param string $paquet
-     * @return Ordinateur
-     */
-    public function setPaquet($paquet)
-    {
-        $this->paquet = $paquet;
-
-        return $this;
-    }
-
-    /**
-     * Get paquet
-     *
-     * @return string 
-     */
-    public function getPaquet()
-    {
-        return $this->paquet;
     }
 }

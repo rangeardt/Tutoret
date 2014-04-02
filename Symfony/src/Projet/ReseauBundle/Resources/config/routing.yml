@@ -30,6 +30,6 @@ Projet_adminOrdinateur:
     path:  /administration/ordinateur
     defaults: { _controller: ProjetReseauBundle:Reseau:formOrdinateur }
 
-Projet_adminOrdinateur:
+Projet_adminEtudiant:
     path:  /administration/etudiant
     defaults: { _controller: ProjetReseauBundle:Reseau:formEtudiant }

@@ -79,6 +79,7 @@ class OrdinateursSalles implements FixtureInterface
       $liste_Ordi[$i]->setSalle($liste_Salle[$n]); 
       $liste_Ordi[$i]->setEtudiant(null);
       $liste_Ordi[$i]->setEtat(0);
+      $liste_Ordi[$i]->setPaquet(null);
       $manager->persist($liste_Ordi[$i]);
     }
 
