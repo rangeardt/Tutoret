@@ -123,30 +123,6 @@ class Ordinateur
     {
         return $this->etat;
     }
-
-    /**
-     * Set config
-     *
-     * @param \Projet\ReseauBundle\Entity\ConfigPost $config
-     * @return Ordinateur
-     */
-    public function setConfig(\Projet\ReseauBundle\Entity\ConfigPost $config = null)
-    {
-        $this->config = $config;
-
-        return $this;
-    }
-
-    /**
-     * Get config
-     *
-     * @return \Projet\ReseauBundle\Entity\ConfigPost 
-     */
-    public function getConfig()
-    {
-        return $this->config;
-    }
-
     /**
      * Set etudiant
      *
