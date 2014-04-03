@@ -3,7 +3,11 @@
 {% block title %}
   Reseau - {{ parent() }}
 {% endblock %}
+
 {% block body %}
+ {% block path %}
+ <a href="{{ path('Projet_accueil') }}">Projet</a>
+  {% endblock %}
   <div class="row-fluid">
 
 

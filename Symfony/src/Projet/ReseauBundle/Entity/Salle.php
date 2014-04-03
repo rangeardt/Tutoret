@@ -118,29 +118,6 @@ class Salle
     }
 
     /**
-     * Set config
-     *
-     * @param \Projet\ReseauBundle\Entity\ConfigSalle $config
-     * @return Salle
-     */
-    public function setConfig(\Projet\ReseauBundle\Entity\ConfigSalle $config = null)
-    {
-        $this->config = $config;
-
-        return $this;
-    }
-
-    /**
-     * Get config
-     *
-     * @return \Projet\ReseauBundle\Entity\ConfigSalle 
-     */
-    public function getConfig()
-    {
-        return $this->config;
-    }
-
-    /**
      * Set date
      *
      * @param \DateTime $date

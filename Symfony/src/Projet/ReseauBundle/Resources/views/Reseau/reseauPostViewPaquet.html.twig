@@ -1,0 +1,23 @@
+{% extends "ProjetReseauBundle::layout.html.twig" %}
+{% block title %}
+  Salle - {{ parent() }}
+{% endblock %}
+ {% block path %}
+ {{parent()}}/<a href="{{ path('Projet_service') }}">Service</a>/<a href="{{ path('Projet_reseauGlobal') }}">Reseau</a>/<a href="{{ path('Projet_reseauSalleView', {'salle':salle}) }}">{{salle}}</a>
+  {% endblock %}
+{% block body_content%}
+
+<h3>Paquet</h3>
+
+<div class="row-fluid">
+	<div class="span6">
+	<h4>Base</h4>
+		{{defaults[0].defaults|nl2br}}
+	</div>
+	<div class="span6">
+	<h4>Machine</h4>
+		{{rep[0].paquet|nl2br}}
+	</div>
+</div>
+
+{% endblock %}

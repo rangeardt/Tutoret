@@ -68,6 +68,23 @@ class  ReseauController extends Controller
     ));
 
     }
+    public function reseauPostViewPaquetAction($salle,$post)
+    {
+          $defaults = $this->getDoctrine()
+                  ->getManager()
+                  ->getRepository('ProjetReseauBundle:Paquet')
+                  ->findAll();
+         $rep = $this->getDoctrine()
+                        ->getManager()
+                        ->getRepository('ProjetReseauBundle:Ordinateur')
+                        ->findBySallePost($salle,$post);
+    return $this->render('ProjetReseauBundle:Reseau:reseauPostViewPaquet.html.twig', array(
+      'defaults'=>$defaults,
+      'rep'=>$rep,
+       'salle'=>$salle,
+    ));
+
+    }
 
     public function formSalleAction()
     {

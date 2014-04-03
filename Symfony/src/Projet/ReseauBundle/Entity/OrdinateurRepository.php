@@ -14,7 +14,7 @@ use Projet\ReseauBundle\Entity\Salle;
 class OrdinateurRepository extends EntityRepository
 {
 
-public function findById($id)
+public function findById($id)//salle
 {
   // On utilise le QueryBuilder créé par le repository directement pour gagner du temps
   // Plus besoin de faire le select() ni le from() par la suite donc
@@ -28,4 +28,20 @@ $qb = $this->createQueryBuilder('p');
   return $qb->getQuery()
             ->getResult();
 }
+
+public function findBySallePost($salle,$post)//salle
+{
+
+  	$qb = $this->createQueryBuilder('Post')
+->leftJoin('Post.salle', 's');
+
+$qb->where('s.nom = :nom')
+->setParameter('nom', $salle);
+
+$qb->andWhere('Post.nom = :post')
+       ->setParameter('post', $post) ;
+
+return $qb->getQuery()->getResult();
+}
+
 }
