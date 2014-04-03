@@ -190,7 +190,7 @@ def recup_liste():
     return res
 
 def recup_local():
-    cmd=os.popen("dpkg -l | sed -e \"s/\ \ */ /g\"| cut -d ' ' -f2,3| head -n -5")
+    cmd=os.popen("dpkg -l | sed -e \"s/\ \ */ /g\"| cut -d ' ' -f2,3 | tail -n +6")
     cmd=cmd.read()
     return cmd
 
@@ -202,8 +202,6 @@ def get_result(cursor,idpc):
     d=difflib.Differ()
     diff = d.compare(l1,l2)
     result='\n'.join(diff)
-    result=result.replace('+ ',"Paquet supplementaire : ")
-    result=result.replace('- ',"Paquet manquant : ")
    
     sql = "UPDATE Ordinateur SET text='%s' \
        WHERE id='%d'" % (result,idpc)
