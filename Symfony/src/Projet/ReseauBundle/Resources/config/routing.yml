@@ -17,8 +17,6 @@ Projet_reseauSalleView:
 Projet_reseauPostViewPaquet:
     path:  /service/reseau/{salle}/{post}
     defaults: { _controller: ProjetReseauBundle:Reseau:reseauPostViewPaquet }
-
-
 Projet_admin:
     path:  /administration
     defaults: { _controller: ProjetReseauBundle:Reseau:index }
@@ -38,3 +36,7 @@ Projet_adminOrdinateur:
 Projet_adminEtudiant:
     path:  /administration/etudiant
     defaults: { _controller: ProjetReseauBundle:Reseau:formEtudiant }
+
+Projet_adminPaquet:
+    path:  /administration/paquet
+    defaults: { _controller: ProjetReseauBundle:Reseau:formPaquet }

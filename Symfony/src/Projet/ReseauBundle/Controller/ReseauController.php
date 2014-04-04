@@ -12,6 +12,8 @@ use Projet\ReseauBundle\Entity\Application;
 use Projet\ReseauBundle\Form\OrdinateurType;
 use Projet\ReseauBundle\Form\EtudiantType;
 use Projet\ReseauBundle\Entity\Etudiant;
+use Projet\ReseauBundle\Entity\Paquet;
+use Projet\ReseauBundle\Form\PaquetType;
 use \DateTime;
 
 class  ReseauController extends Controller
@@ -193,5 +195,27 @@ class  ReseauController extends Controller
       ));
     }
 
+    public function formPaquetAction()
+    {
+      $paquet = new Paquet();
+      $form = $this->createForm(new PaquetType, $paquet);
+
+      $request = $this->get('request');
+      if ($request->getMethod() == 'POST') {
+        $form->bind($request);
+
+        if ($form->isValid()) {
+          $em = $this->getDoctrine()->getManager();
+          $em->persist($paquet);
+          $em->flush();
+
+          return $this->redirect($this->generateUrl('Projet_admin'));
+        }
+      }
+
+      return $this->render('ProjetReseauBundle:Reseau:formulairePaquet.html.twig', array(
+        'form' => $form->createView(),
+      ));
+    }
 
 }
