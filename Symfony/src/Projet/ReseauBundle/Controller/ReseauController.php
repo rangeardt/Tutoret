@@ -61,10 +61,16 @@ class  ReseauController extends Controller
                   ->getManager()
                   ->getRepository('ProjetReseauBundle:ConfigApplication')
                   ->findAll();
+
+                   $serv = $this->getDoctrine()
+                  ->getManager()
+                  ->getRepository('ProjetReseauBundle:ConfigServices')
+                  ->findAll();
     return $this->render('ProjetReseauBundle:Reseau:reseauSalleView.html.twig', array(
       'salle'=>$salle,
       'liste_post' => $liste,
-      'app'=>$app
+      'app'=>$app,
+      'serv'=>$serv
     ));
 
     }

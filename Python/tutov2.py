@@ -21,7 +21,7 @@ def applications(tabs):
     return tabrep
 
 def application(nom):
-    res=int(os.popen("ps aux | grep -e "+nom+" | grep -v color | wc -l").read())-1
+    res=int(os.popen("ps aux | grep -e "+nom.replace('\n','')+" | grep -v color | wc -l").read())-1
     return res 
 
 def salle():
@@ -144,7 +144,7 @@ def Appli(cursor,cursor2,idpc):
     try:
         cursor.execute(sql);
         results = cursor.fetchall()
-        for row in results:
+        for row in results:            
             app=application(row[2]);
             if(app<1):
                 Edit_ConfigApplication(cursor2,idpc,row[0],0);
@@ -169,24 +169,19 @@ def Reset_Appli(cursor,cursor2,idpc):
     except:
         print "Erreur: fecth data -> Rest_Appli"
 
-def recup_liste():
-    db = MySQLdb.connect("info2", "rangeard", "rangeard", "DBrangeard")
-    cursor = db.cursor()
+def recup_liste(cursor):
     res=""
-    req="SELECT * FROM paquet"
+    req="SELECT * FROM Paquet"
     try:
         cursor.execute(req)
         if(cursor.rowcount>0):
             result=cursor.fetchall()
-           # print(result[0])
             for row in result:
                 res=row[1]
                 res=""" """+res
                 res=res[1:]
-                print(res)
-        #else:
-           # print("Erreur d'ouverture de la table PACKET")
-        db.close()
+        else:
+            print("Erreur d'ouverture de la table PACKET")
     except:
         print("Impossible d'ouvrir la bdd")
     return res
@@ -197,7 +192,7 @@ def recup_local():
     return cmd
 
 def get_result(cursor,idpc):
-    l1=recup_liste()
+    l1=recup_liste(cursor)
     l1=l1.splitlines()
     l2=recup_local()
     l2=l2.splitlines()
@@ -216,7 +211,7 @@ def get_result(cursor,idpc):
 
 #RAillat
 def Exist_ConfigServices(cursor,idconfig,idservice):
-    sql = "SELECT etat FROM ConfigService \
+    sql = "SELECT etat FROM ConfigServices \
        WHERE post_id='%d' and service_id='%d'" % (idconfig,idservice)
     try:
         cursor.execute(sql);
@@ -240,7 +235,7 @@ def Edit_ConfigServices(cursor,idpc,idservice,etat):
         except:
             print "Erreur: MAJ -> Edit_ConfigService"
     else :
-        sql = "INSERT INTO ConfigService (post_id,service_id,etat)\
+        sql = "INSERT INTO ConfigServices (post_id,service_id,etat)\
                 VALUES('%d','%d','%d')" % (idpc,idservice,etat);
         try:
             cursor.execute(sql);
@@ -290,23 +285,22 @@ def service(cursor,idpc):
         cursor.execute(sql);
         results = cursor.fetchall()
         for row in results:
-            Id=row[0]
+            idserv=row[0]
             nom=row[2]
-            fct=row[4]
+            fct=row[3]
             if(fct=="getPageAccueil"):
-#appel getreponse update bd 
                 res=getPageAccueil()
-                Edit_ConfigServices(cursor,idpc,Id,res)
+                Edit_ConfigServices(cursor,idpc,idserv,res)
             elif(fct=="banner"):
                 #res=banner()
-                #Edit_ConfigServices(cursor,idpc,Id,res)
+                #Edit_ConfigServices(cursor,idpc,idserv,res)
                 print("need ssh")
             elif(fct=="cups"):
                 res=cups()
-                Edit_ConfigServices(cursor,idpc,Id,res)
+                Edit_ConfigServices(cursor,idpc,idserv,res)
             elif(fct=="cfengine"):
                 res=cfengine()
-                Edit_ConfigServices(cursor,idpc,Id,res)
+                Edit_ConfigServices(cursor,idpc,idserv,res)
     except:
         print "Erreur: fecth data -> Service"
 
@@ -349,28 +343,30 @@ def InsertionBDD():
     db = MySQLdb.connect("info2", "rangeard", "rangeard", "DBrangeard")
     cursor = db.cursor()
     cursor2 = db.cursor()
-    #Recuperer Num salle -> Id salle
+    #Recuperer Num salle -> id salle
     #Num Pc
     #Check que l'etat est a deux
     #les deux -> id pc && configpost
     #Recup Nometu -> idEtu
     #Mis a jour ConfigPost(idetu)
     idsalle=Recup_id_salle(cursor,salle())#info27 -> salle()
-    if(idsalle!=None):        
-        idpc=Recup_id_pc(cursor,idsalle,numpc());
+
+    if(idsalle!=None):
+        idpc=Recup_id_pc(cursor,idsalle,numpc())
         if(idpc!=None):
+            service(cursor,idpc)
             Edit_etat(cursor,idpc,2);
             db.commit()
-            idetu=Recup_id_etu(cursor,qui());#rangeard -> qui()
+            idetu=Recup_id_etu(cursor,qui())#rangeard -> qui()
             if(idetu!=None):
                 get_result(cursor,idpc)
                 Edit_OrdiEtu(cursor,idetu,idpc)
-                db.commit() 
+                db.commit()
                 while(1):
-                  Appli(cursor,cursor2,idpc);
-                  db.commit()
-                  time.sleep(60)
-                #Fin Prog:
+                    Appli(cursor,cursor2,idpc);
+                    db.commit()
+                    time.sleep(60)
+                 #Fin Prog:
                 Edit_etat(cursor,idpc,1);
                 Edit_OrdiEtu(cursor,0,idpc);
                 Reset_Appli(cursor,cursor2,idpc);

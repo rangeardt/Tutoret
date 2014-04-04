@@ -39,28 +39,44 @@
 									{% if post.etudiant %}
 										{% if post.etudiant.image %}
 					
-								<img src="{{ asset(post.etudiant.image.url) }}"  alt="{{post.etudiant.image.alt}}" style="width=150"></img>										{% else %}
+										<img src="{{ asset(post.etudiant.image.url) }}"  alt="{{post.etudiant.image.alt}}" style="width=150"></img>				
+										{% else %}
 										
-																<img src="{{ asset('img/personne.png') }}"  alt="User !" style="width=150"></img>	
+										<img src="{{ asset('img/personne.png') }}"  alt="User !" style="width=150"></img>	
 									
 										{% endif %}
 
 										<p>Utilisateur connecté sur ce poste : {{ post.etudiant.nom }} {{ post.etudiant.prenom }} </p>
 									{% else %}
-								
+											<img src="{{ asset('img/personne.png') }}"  alt="User !" style="width=150"></img>
 										<p>Aucun utilisateur connecté</p>
 									{% endif %}
-									
+									{% if post.etudiant %}
+					
+									<h3>Applications :</h3>
 									{% for i in app%}
 										{% if i.post.id == post.id %}
-											Applications :
+											
 											<p>{{i.application.nom}} - {% if i.etat == 1 %} lancé {% else %} pas lancé {% endif %}</p>
 										{% endif %}
 									{% endfor %}
+	
+
+
+									<h3>Services :</h3>
+									{% for i in serv%}
+										{% if i.post.id == post.id %}
+											
+											<p>{{i.service.nom}} - {% if i.etat == 1 %} lancé {% else %} pas lancé {% endif %}</p>
+										{% endif %}
+									{% endfor %}
+
+									{% endif %}
 								</div>
 								<div class="modal-footer">
-									<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
 									 <a href="{{ path('Projet_reseauPostViewPaquet', { 'salle': salle.nom, 'post':post.nom }) }}" class="btn btn-primary">Les Paquet</a>
+									<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+									
 								</div>
 								</div>	
   			{% set cpt = cpt + 1 %}
